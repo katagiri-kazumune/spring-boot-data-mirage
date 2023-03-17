@@ -1,0 +1,43 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.2'
+	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
+	id 'java'
+	id "io.freefair.lombok" version "6.5.0.3"
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'org.springframework.data:spring-data-commons:2.7.2'
+
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+
+	implementation files('libs/spring-data-mirage.jar')
+	implementation files('libs/spar-wings-spring-data-chunk.jar')
+	
+	implementation "com.miragesql:miragesql:2.1.0"
+	implementation "com.miragesql:miragesql-integration:2.1.0"
+	implementation "org.flywaydb:flyway-core:7.0.0"
+	compileOnly "org.springframework:spring-context"
+	compileOnly "org.springframework:spring-jdbc"
+
+	testImplementation "org.flywaydb.flyway-test-extensions:flyway-spring-test:7.0.0"
+	testImplementation "com.h2database:h2:1.4.200"
+
+//	implementation "mysql:mysql-connector-java"
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
